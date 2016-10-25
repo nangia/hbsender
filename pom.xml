@@ -36,12 +36,12 @@
 	<artifactId>hb.sender</artifactId>
 
 	<organization>
-		<name>Vartman Solutions Private Limited</name>
+		<name>Vartman Solutions</name>
 		<url>http://www.healthbankapp.com/</url>
 	</organization>
 	<url>http://www.healthbankapp.com/</url>
 	<properties>
-		<builtBy>Vartman Solutions Private Limited</builtBy>
+		<builtBy>Vartman Solutions</builtBy>
 		<java.source.version>1.5</java.source.version>
 		<java.target.version>1.5</java.target.version>
 		<mainClass>com.pgi.Main</mainClass>
