@@ -160,7 +160,7 @@
 	<target name="package" depends="compile,test" description="Package the application">
 		<jar jarfile="${maven.build.dir}/${maven.build.finalName}.app.jar" basedir="${maven.build.outputDir}">
 			<manifest>
-				<attribute name="Main-Class" value="com.pgi.Main" />
+				<attribute name="Main-Class" value="com.vartman.Main" />
 			</manifest>
 		</jar>
 		<jar jarfile="${maven.build.dir}/${maven.build.finalName}.jar" basedir="${maven.build.outputDir}" excludes="**/Main.*">

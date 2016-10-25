@@ -1,4 +1,4 @@
-package com.pgi;
+package com.vartman;
 
 import java.io.FileInputStream;
 import java.util.Properties;

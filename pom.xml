@@ -22,7 +22,7 @@
 					<configuration>
 						<archive>
 							<manifest>
-								<mainClass>com.pgi.Main</mainClass>
+								<mainClass>com.vartman.Main</mainClass>
 							</manifest>
 						</archive>
 					</configuration>
@@ -44,7 +44,7 @@
 		<builtBy>Vartman Solutions</builtBy>
 		<java.source.version>1.5</java.source.version>
 		<java.target.version>1.5</java.target.version>
-		<mainClass>com.pgi.Main</mainClass>
+		<mainClass>com.vartman.Main</mainClass>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<product.name>HeathBank</product.name>
 	</properties>
