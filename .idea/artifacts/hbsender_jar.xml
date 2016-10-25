@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="hbsender:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/hbsender_jar</output-path>
+    <root id="archive" name="hbsender.jar">
+      <element id="module-output" name="hbsender" />
+    </root>
+  </artifact>
+</component>
