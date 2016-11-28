@@ -106,6 +106,52 @@ public class MultiPartUtility {
     }
 
     /**
+     * Retrieve response
+     *
+     * @return String which is the response from server
+     * otherwise an exception is thrown.
+     * @throws IOException
+     */
+    public String getResponse() throws IOException
+    {
+        InputStream is = null;
+        int statusCode = httpConn.getResponseCode();
+        boolean failure = false;
+        try {
+            is = httpConn.getInputStream();
+        } catch (IOException ioe) {
+            if (!((200 <= statusCode) && (statusCode < 300))) {
+                failure = true;
+                is = httpConn.getErrorStream();
+            }
+        }
+        BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+        StringBuilder stringBuilder = new StringBuilder();
+
+        String line = null;
+        while ((line = reader.readLine()) != null)
+        {
+            stringBuilder.append(line + "\n");
+        }
+        reader.close();
+        String response = stringBuilder.toString();
+        if (failure) {
+            throw new HBIOException(statusCode, response);
+        } else {
+            return response;
+        }
+
+
+//        String response = "";
+//        String line = null;
+//        while ((line = reader.readLine()) != null) {
+//            response += line;
+//        }
+//        reader.close();
+//        return response;
+    }
+
+    /**
      * Completes the request and receives response from the server.
      *
      * @return String in case the server returned
@@ -120,18 +166,8 @@ public class MultiPartUtility {
 
         // checks server's status code first
         int status = httpConn.getResponseCode();
-        if (status == HttpURLConnection.HTTP_OK) {
-            BufferedReader reader = new BufferedReader(new InputStreamReader(
-                    httpConn.getInputStream()));
-            String line = null;
-            while ((line = reader.readLine()) != null) {
-                response += line;
-            }
-            reader.close();
-            httpConn.disconnect();
-        } else {
-            throw new IOException("Server returned non-OK status: " + status);
-        }
+        response = getResponse();
+        httpConn.disconnect();
         return response;
     }
 }

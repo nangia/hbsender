@@ -1,6 +1,7 @@
 package com.pgi;
 import java.util.Properties;
 import java.io.FileInputStream;
+import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) throws Exception {
@@ -30,11 +31,25 @@ public class Main {
         ReportSenderUtility httpsender = new ReportSenderUtility();
 
         System.out.println("\nSend Http POST request");
-        String response = httpsender.sendPost(url, filepath, testdate, phone,
-                            description, patient_name, patient_email,
-                            test_unique_id, patient_unique_id, labid
-        );
-        System.out.println("\nResponse = " + response);
+        try {
+            String response = httpsender.sendPost(url, filepath, testdate, phone,
+                    description, patient_name, patient_email,
+                    test_unique_id, patient_unique_id, labid
+            );
+            System.out.println("\nResponse = " + response);
+            // Must log response even when success
+        } catch (HBIOException e) {
+            int status = e.status;
+            String response = e.response;
+            System.err.println("status =" + Integer.toString(status) + " response = " + response);
+            // Check the status value and decide if a retry needs to be done or not
+            // Must log the value of status and response
+        } catch (IOException e) {
+            System.err.println("Caught IOException: " + e.getMessage());
+            // An IO Exception happened.
+            // Log the value of e.getMessage()
+            // We must try again as this seems to be some connection failure
+        }
 
     }
 }
